@@ -3,13 +3,16 @@ import assets from "../assets/assets";
 
 const ThemeToggleBtn = ({ theme, setTheme }) => {
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    const preferDardMode = window.matchMedia(
+      "(prefers-color-scheme:dark)"
+    ).matches;
+    setTheme(theme || (preferDardMode ? "dark" : "light"));
+  }, []);
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
   }, [theme]);
+
   return (
     <>
       <button className="cursor-pointer">
