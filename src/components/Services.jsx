@@ -1,6 +1,7 @@
 import React from "react";
 import assets from "../assets/assets";
 import Title from "./Title";
+import ServiceCard from "./ServiceCard";
 
 const Services = () => {
   const servicesData = [
@@ -16,10 +17,16 @@ const Services = () => {
       icon: assets.marketing_icon,
     },
     {
+      title: "Content writing",
+      description:
+        "We help you create a marketing strategy that drives results.",
+      icon: assets.content_icon,
+    },
+    {
       title: "Social media",
       description:
         "We help you build a strong social media presence and engage with your audience.",
-      icon: assets.ads_icon,
+      icon: assets.social_icon,
     },
   ];
 
@@ -38,20 +45,9 @@ const Services = () => {
         title="How can we help?"
         desc="From strategy to execution, we craft digital solutions that move your business forward."
       />
-
-      {/* Services cards */}
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-10 w-full">
-        {servicesData.map((service, index) => (
-          <div
-            key={index}
-            className="flex flex-col items-center text-center gap-4 p-6 rounded-2xl shadow-lg bg-white dark:bg-gray-800 hover:scale-105 transition-transform"
-          >
-            <img src={service.icon} alt={service.title} className="w-16 h-16" />
-            <h3 className="text-xl font-semibold">{service.title}</h3>
-            <p className="text-gray-600 dark:text-gray-300 text-sm">
-              {service.description}
-            </p>
-          </div>
+      <div className="flex flex-col md:grid grid-cols-2">
+        {servicesData.map((service, i) => (
+          <ServiceCard key={i} service={service} index={i} />
         ))}
       </div>
     </div>
